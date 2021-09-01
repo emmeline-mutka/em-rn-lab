@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import ButtonComponent from "./ButtonComponent";
 
-const MenuComponent = (props) => {
+const MainComponent = (props) => {
   const styles = StyleSheet.create({
     content: {
       flexDirection: "row",
@@ -28,19 +28,19 @@ const MenuComponent = (props) => {
     <View style={styles.content}>
       <ButtonComponent 
         text="Dagbok" 
-        color="#9900CC" 
+        color="#B83C96" 
         contextFunction={diary}
         squareShape={true} 
       />
       <ButtonComponent
         text="Foderstat"
-        color="#00CCFF"
+        color="#5C2B81"
         contextFunction={feed}
         squareShape={true}
       />
       <ButtonComponent
         text="Bokningar"
-        color="#FF00CC"
+        color="#28469B"
         contextFunction={appointment}
         squareShape={true}
       />
@@ -48,4 +48,4 @@ const MenuComponent = (props) => {
   );
 };
 
-export default MenuComponent;
+export default MainComponent;
