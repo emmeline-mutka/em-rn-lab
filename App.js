@@ -26,6 +26,12 @@ const App = () => {
       resizeMode: "contain",
       marginBottom: 30,
     },
+    spaceView: {
+      height: 200,
+      width: 260,
+      margin: 10,
+      padding: 10,
+    }
   });
 
   function displayContent(checkContent) {
@@ -41,7 +47,7 @@ const App = () => {
         setDisplayingContent(<AppointmentComponent />);
         break;
       default:
-        setDisplayingContent(null);
+        setDisplayingContent(<View style={styles.spaceView} />);
     }
   }
 
