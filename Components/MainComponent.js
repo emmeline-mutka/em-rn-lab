@@ -10,17 +10,14 @@ const MainComponent = (props) => {
   });
 
   function diary() {
-    // console.log("Diary is pressed");
     props.menuFunction("diary");
   }
 
   function feed() {
-    // console.log("Feed is pressed");
     props.menuFunction("feed");
   }
 
   function appointment() {
-    // console.log("Appointment is pressed");
     props.menuFunction("appointment");
   }
 

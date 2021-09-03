@@ -6,7 +6,6 @@ const ButtonComponent = ({ text, color, contextFunction, squareShape }) => {
   const buttonColor = color;
   const functionToRun = contextFunction;
   const buttonShape = squareShape;
-
   const styles = StyleSheet.create({
     buttonStyling: {
       height: 30,
@@ -25,11 +24,14 @@ const ButtonComponent = ({ text, color, contextFunction, squareShape }) => {
       alignItems: "center",
       justifyContent: "center",
       borderRadius: 30,
-    }
+    },
   });
 
   return (
-    <Pressable style={buttonShape ? styles.buttonStyling : styles.editButtonStyling} onPress={functionToRun}>
+    <Pressable
+      style={buttonShape ? styles.buttonStyling : styles.editButtonStyling}
+      onPress={functionToRun}
+    >
       <Text>{buttonText}</Text>
     </Pressable>
   );

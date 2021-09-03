@@ -7,8 +7,6 @@ import FeedComponent from "./Components/FeedComponent";
 import AppointmentComponent from "./Components/AppointmentComponent";
 
 const App = () => {
-  const [content, setContent] = useState("default");
-  const [displayingContent, setDisplayingContent] = useState(null);
   const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -31,11 +29,30 @@ const App = () => {
       width: 260,
       margin: 10,
       padding: 10,
-    }
+    },
   });
+  const [content, setContent] = useState("default");
+  const [displayingContent, setDisplayingContent] = useState(null);
+  const [getWeather, setGetWeather] = useState(null);
+
+  function showWeather() {
+    let url = `https://opendata-download-metfcst.smhi.se/api/category/pmp3g/version/2/geotype/point/lon/18.068580/lat/59.329323/data.json`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((json) => {
+        setGetWeather(json.timeSeries[2].parameters[10].values[0]);
+      })
+      .catch((error) => {
+        console.error("Error ", error);
+      });
+  }
+
+  useEffect(() => {
+    showWeather();
+  }, []);
 
   function displayContent(checkContent) {
-    // console.log("Check content value: ", checkContent);
     switch (checkContent) {
       case "diary":
         setDisplayingContent(<DiaryComponent />);
@@ -51,18 +68,9 @@ const App = () => {
     }
   }
 
-  // function getWeather () {
-  //   console.log("Checking weather")
-  // }
-
   useEffect(() => {
     displayContent(content);
-    // console.log("Content value: ", content)
   }, [content]);
-
-  // useEffect(() => {
-  //   getWeather();
-  // }, []);
 
   return (
     <View style={styles.container}>
@@ -74,7 +82,11 @@ const App = () => {
         />
         <MainComponent menuFunction={setContent} />
         <View>{displayingContent}</View>
-        <h5>Dagens väder:</h5>
+        <View>
+          <h5>
+            Nuvarande temperatur: {getWeather}°C
+          </h5>
+        </View>
       </View>
     </View>
   );
